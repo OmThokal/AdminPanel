@@ -1,0 +1,319 @@
+/* Update container and header classes */
+.list-brands-container {
+    background-color: #f2f7fb;
+    border: 1px dashed #b3cde3;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.list-brands-header {
+    background-color: #2e6fa8;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list-brands-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.header-breadcrumbs {
+    font-size: 12px;
+}
+
+.header-breadcrumbs span:first-child {
+    color: #b2cbe0;
+}
+
+.table-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.show-entries {
+    font-size: 14px;
+    color: #666;
+    display: flex;
+    align-items: center;
+}
+
+.show-entries select {
+    margin: 0 5px;
+    padding: 2px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    font-size: 14px;
+}
+
+.search-and-add {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+}
+
+.search-box label {
+    font-size: 14px;
+    color: #666;
+    margin-right: 5px;
+}
+
+.search-box input {
+    padding: 3px 5px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+
+/* Update button class */
+.add-brand-btn {
+    background-color: #ff9900;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.add-brand-btn:hover {
+    background-color: #e68a00;
+}
+
+.table-wrapper {
+    background-color: white;
+    border: 1px solid #ddd;
+}
+
+/* Update table class */
+.brands-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.brands-table th, .brands-table td {
+    padding: 10px 15px;
+    text-align: left;
+    border: 1px solid #eee;
+}
+
+.brands-table th {
+    background-color: #f8f8f8;
+    font-weight: normal;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+}
+
+.brands-table tbody tr:hover {
+    background-color: #f0f0f0;
+}
+
+.status-badge {
+    padding: 3px 8px;
+    border-radius: 12px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-badge.active {
+    background-color: #28a745;
+}
+
+.status-badge.inactive {
+    background-color: #dc3545;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.action-buttons button {
+    border: none;
+    width: 70px;
+    height: 40px;
+    border-radius: 3px;
+    cursor: pointer;
+    color: white;
+    font-size: 12px;
+}
+
+.btn-edit {
+    background-color: #ff9900;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+}
+.table-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.pagination button {
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.pagination button:disabled {
+    cursor: not-allowed;
+    background-color: #eee;
+    color: #ccc;
+}
+
+.page-number {
+    font-weight: bold;
+}
+
+/* Modal and form styling - kept generic */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.3s ease-in-out;
+    position: relative;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.modal-header-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.close-modal-btn {
+    position: absolute;
+    width: 40px;
+    top: 10px;
+    right: 0px;
+    font-size: 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #999;
+    transition: color 0.3s ease;
+}
+
+.close-modal-btn:hover {
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus, .form-group select:focus {
+    border-color: #2e6fa8;
+    outline: none;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #2e6fa8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #27608f;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 500px) {
+    .modal {
+        padding: 20px;
+    }
+    .modal-header-title {
+        font-size: 18px;
+    }
+    .close-modal-btn {
+        font-size: 24px;
+    }
+}

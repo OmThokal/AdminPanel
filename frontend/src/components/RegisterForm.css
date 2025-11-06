@@ -1,0 +1,82 @@
+.form-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.form-field input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.form-field input:focus {
+  border-color: #4cafef;
+  outline: none;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: #4cafef;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background: #2196f3;
+}
+.login-redirect {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.login-btn {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.login-btn:hover {
+  background-color: #0056b3;
+}
+.main-content.full-width {
+  margin-left: 0;
+  padding: 50px;
+}

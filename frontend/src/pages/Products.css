@@ -1,0 +1,446 @@
+/* --- Header Styles (Shared) --- */
+.list-products-container, .add-product-container {
+    background-color: #f2f7fb;
+    border: 1px dashed #b3cde3;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+}
+
+.list-products-header, .add-product-header {
+    background-color: #2e6fa8;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.list-products-header h3, .add-product-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.header-breadcrumbs {
+    font-size: 12px;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+}
+.header-breadcrumbs span:first-child {
+    color: #b2cbe0;
+}
+
+/* Listing Products Title Bar */
+.listing-products-title {
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-top: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    color: #333;
+    font-size: 14px;
+}
+
+/* Back Button for Add Product Page - Corrected Styling */
+.back-btn {
+    background-color: #ff9900;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 60px;
+    margin-left: 15px;
+    
+    /* REMOVED absolute positioning to ensure proper responsiveness */
+    position: relative; 
+    right: auto;
+    top: auto;
+    transform: none; 
+    
+    transition: background-color 0.3s;
+}
+
+.back-btn:hover {
+    background-color: #e68a00;
+}
+
+/* --- Table Control Styles (List View) --- */
+.table-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    background-color: white;
+    padding: 10px 20px;
+}
+
+.show-entries {
+    font-size: 14px;
+    color: #666;
+    display: flex;
+    align-items: center;
+}
+.show-entries select {
+    margin: 0 5px;
+    padding: 2px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    font-size: 14px;
+}
+
+.search-and-add {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+}
+
+.search-box label {
+    font-size: 14px;
+    color: #666;
+    margin-right: 5px;
+}
+
+.search-box input {
+    padding: 3px 5px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+
+.add-product-btn {
+    background-color: #ff9900;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.add-product-btn:hover {
+    background-color: #e68a00;
+}
+
+/* --- Table Styles --- */
+.table-wrapper {
+    background-color: white;
+    border: 1px solid #ddd;
+    margin-top: -1px;
+}
+
+.products-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.products-table th, .products-table td {
+    padding: 10px 15px;
+    text-align: left;
+    border: 1px solid #eee;
+    vertical-align: middle;
+}
+
+.products-table th {
+    background-color: #f8f8f8;
+    font-weight: normal;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+    cursor: pointer;
+}
+
+.products-table tbody tr:hover {
+    background-color: #f0f0f0;
+}
+
+/* Image Thumbnail */
+.product-thumbnail {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    display: block;
+}
+
+.no-image-placeholder {
+    display: inline-block;
+    padding: 5px;
+    background-color: #f0f0f0;
+    color: #999;
+    border-radius: 3px;
+    font-size: 10px;
+}
+
+
+/* Status Badge (Same as Categories/Brands) */
+.status-badge {
+    padding: 3px 8px;
+    border-radius: 12px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+.status-badge.active {
+    background-color: #28a745;
+}
+.status-badge.inactive {
+    background-color: #dc3545;
+}
+
+/* Action Buttons (Same as Categories/Brands) */
+.action-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.action-buttons button {
+    border: none;
+    width: 50px;
+    height: 30px;
+    border-radius: 3px;
+    cursor: pointer;
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+}
+.btn-edit {
+    background-color: #ff9900;
+}
+.btn-delete {
+    background-color: #dc3545;
+}
+
+
+/* --- Table Footer & Pagination --- */
+.table-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #666;
+    background-color: white;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.pagination button {
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 14px;
+}
+.pagination button:disabled {
+    cursor: not-allowed;
+    background-color: #eee;
+    color: #ccc;
+}
+.page-number {
+    font-weight: bold;
+}
+
+
+/* --- Add Product Form Styles --- */
+
+.product-form-card {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin-top: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input[type="file"] {
+    padding: 8px 0;
+    font-size: 14px;
+}
+
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: #2e6fa8;
+    outline: none;
+}
+
+.image-info {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.submit-btn {
+    width: 150px;
+    padding: 10px;
+    background-color: #2e6fa8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #27608f;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .table-controls {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .search-and-add {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .search-box {
+        flex-grow: 1;
+    }
+    
+    .search-box input {
+        width: 100%;
+        min-width: 100px;
+    }
+
+    .list-products-header, .add-product-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-right: 15px;
+    }
+    
+    .header-breadcrumbs {
+        position: static;
+        margin-top: 5px;
+    }
+
+    /* **CORRECTION for back-btn responsiveness** */
+    .back-btn {
+        position: static;
+        transform: none;
+        margin-top: 10px;
+        text-align: center;
+        width: 100%; /* Make it full width in mobile */
+    }
+
+    .products-table, .products-table thead, .products-table tbody, .products-table th, .products-table td, .products-table tr { 
+        display: block; 
+    }
+    
+    /* Hide table headers (but not display: none;, or the table won't work right) */
+    .products-table thead tr { 
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    
+    .products-table tr { 
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        background-color: white;
+    }
+    
+    .products-table td { 
+        /* Behave like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%; 
+        text-align: right;
+    }
+    
+    .products-table td:before { 
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values increase specificity so we don't override the other padding */
+        top: 6px;
+        left: 6px;
+        width: 45%; 
+        padding-right: 10px; 
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        color: #333;
+    }
+    
+    /* Label the data */
+    .products-table td:nth-of-type(1):before { content: "Sr No"; }
+    .products-table td:nth-of-type(2):before { content: "Image"; }
+    .products-table td:nth-of-type(3):before { content: "Name"; }
+    .products-table td:nth-of-type(4):before { content: "Category"; }
+    .products-table td:nth-of-type(5):before { content: "Brand"; }
+    .products-table td:nth-of-type(6):before { content: "Created at"; }
+    .products-table td:nth-of-type(7):before { content: "Status"; }
+    .products-table td:nth-of-type(8):before { content: "Action"; }
+
+    .products-table td:last-child {
+        border-bottom: none;
+    }
+
+    .table-footer {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+}
+
+@media (max-width: 500px) {
+    .search-and-add {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .add-product-btn {
+        width: 100%;
+    }
+    .submit-btn {
+        width: 100%;
+    }
+}

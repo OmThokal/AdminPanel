@@ -1,0 +1,393 @@
+/* =========================================
+   1. General Layout and Header
+   ========================================= */
+.list-categories-container {
+    background-color: #f2f7fb;
+    padding: 10px; 
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+}
+
+.list-categories-header {
+    background-color: #2e6fa8;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list-categories-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.header-breadcrumbs {
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.header-breadcrumbs span:first-child {
+    color: #b2cbe0;
+}
+
+/* =========================================
+   2. Table Controls (Show/Search/Add)
+   ========================================= */
+.table-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.show-entries {
+    font-size: 14px;
+    color: #666;
+    display: flex;
+    align-items: center;
+}
+
+.show-entries select {
+    margin: 0 5px;
+    padding: 2px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    font-size: 14px;
+}
+
+.search-and-add {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+}
+
+.search-box label {
+    font-size: 14px;
+    color: #666;
+    margin-right: 5px;
+}
+
+.search-box input {
+    padding: 3px 5px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+
+.add-category-btn {
+    background-color: #ff9900;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.add-category-btn:hover {
+    background-color: #e68a00;
+}
+
+/* =========================================
+   3. Main Table Structure
+   ========================================= */
+.table-wrapper {
+    background-color: white;
+    border: 1px solid #ddd;
+    overflow-x: auto; /* Enables horizontal scroll for mobile tables */
+    margin-top: 10px;
+}
+
+.categories-table {
+    width: 100%;
+    min-width: 600px; 
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.categories-table th, .categories-table td {
+    padding: 10px 15px;
+    text-align: left;
+    border: 1px solid #eee;
+}
+
+.categories-table th {
+    background-color: #f8f8f8;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+}
+
+.categories-table tbody tr:hover {
+    background-color: #f0f0f0;
+}
+
+.status-badge {
+    padding: 3px 8px;
+    border-radius: 12px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+    min-width: 50px;
+    text-align: center;
+}
+
+.status-badge.active {
+    background-color: #28a745;
+}
+
+.status-badge.inactive {
+    background-color: #dc3545;
+}
+
+.action-buttons {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 5px;
+    align-items: center;
+}
+
+.action-buttons button {
+    border: none;
+    width: auto;
+    height: auto;
+    padding: 5px 10px; 
+    border-radius: 3px;
+    cursor: pointer;
+    color: white;
+    font-size: 13px;
+}
+
+.btn-edit {
+    background-color: #ff9900;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+}
+
+/* =========================================
+   4. Table Footer and Pagination
+   ========================================= */
+.table-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    font-size: 14px;
+    color: #666;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.pagination button {
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.pagination button:disabled {
+    cursor: not-allowed;
+    background-color: #eee;
+    color: #ccc;
+}
+
+.page-number {
+    font-weight: bold;
+}
+
+/* =========================================
+   5. Modal Structure and Form
+   ========================================= */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-in-out;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+    /* FIX: Remove default focus outline from the modal container */
+    outline: none; 
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.modal-header-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    font-size: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #aaa;
+    padding: 0;
+    transition: color 0.3s ease;
+}
+
+.close-modal-btn:hover {
+    color: #333;
+}
+
+/* FIX: Control focus ring on close button */
+.close-modal-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(153, 153, 153, 0.5);
+    border-radius: 3px;
+}
+
+/* Form-related CSS */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+/* FIX: Customize input/select focus ring to match theme (removes default blue) */
+.form-group input:focus, .form-group select:focus {
+    border-color: #2e6fa8; 
+    box-shadow: 0 0 0 3px rgba(46, 111, 168, 0.3);
+    outline: none;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #2e6fa8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #27608f;
+}
+
+/* FIX: Customize submit button focus/active state (removes default blue) */
+.submit-btn:focus,
+.submit-btn:active {
+    background-color: #27608f; /* Darker blue on click/focus */
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(46, 111, 168, 0.4);
+}
+
+/* =========================================
+   6. Media Queries for Responsiveness
+   ========================================= */
+@media (max-width: 768px) {
+    .table-controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .search-and-add {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .search-box {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .search-box input {
+        flex-grow: 1;
+    }
+    .add-category-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+    .modal {
+        padding: 20px;
+    }
+    .modal-header-title {
+        font-size: 18px;
+    }
+    .close-modal-btn {
+        font-size: 24px;
+    }
+    .table-footer {
+        flex-direction: column;
+        align-items: center;
+    }
+    .pagination-info {
+        margin-bottom: 10px;
+    }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}

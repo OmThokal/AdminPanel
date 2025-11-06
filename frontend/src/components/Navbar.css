@@ -1,0 +1,172 @@
+/* CSS Variables for easier maintenance and theming */
+:root {
+  --navbar-height: 60px;
+  --navbar-bg: #111;
+  --navbar-color: white;
+  --primary-color: #3e98e2;
+  --hover-bg: #000000;
+  --box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.navbar {
+  /* Use fixed units for height, but flexible for width */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; /* Use 100% for full width */
+  height: var(--navbar-height);
+  background: var(--navbar-bg);
+  color: var(--navbar-color);
+  
+  /* Flexbox for main layout */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  /* Use viewport-relative padding for better scaling */
+  padding: 0 2vw; 
+  z-index: 1000;
+  box-sizing: border-box; /* Ensure padding doesn't increase total width */
+}
+
+/* --- Hamburger Button --- */
+.hamburger {
+  background: none;
+  border: none;
+  font-size: 1.8rem; /* Use rem for scalable font size */
+  color: var(--navbar-color);
+  cursor: pointer;
+  padding: 5px;
+  margin-right: 15px; /* Add some space before the title */
+  display: none; /* hidden on desktop by default */
+}
+
+/* --- Navbar Left --- */
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-left h2 {
+  /* Use rem for text size */
+  font-size: 1.25rem; 
+  margin: 0;
+  /* Use 'nowrap' to prevent the title from breaking lines */
+  white-space: nowrap; 
+}
+
+/* --- Navbar Right --- */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  position: relative; /* Essential for positioning the dropdown */
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  /* Add padding for a better click/tap target */
+  padding: 5px; 
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.user-info:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.user-name {
+  font-weight: 500;
+  /* Use em for a size relative to the parent font size */
+  font-size: 1em; 
+}
+
+.user-avatar {
+  /* Use fixed px for avatar to maintain visual clarity */
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 2px solid var(--primary-color); /* Updated border color */
+  object-fit: cover; /* Ensures image covers the area without distortion */
+}
+
+/* --- Dropdown Menu --- */
+.dropdown-menu {
+  position: absolute;
+  /* Use calc for more precise positioning */
+  top: calc(var(--navbar-height) - 5px); 
+  right: 0;
+  background: var(--primary-color);
+  color: var(--navbar-color);
+  border-radius: 6px;
+  min-width: 140px; /* Slightly wider for better readability */
+  box-shadow: var(--box-shadow);
+  z-index: 2000;
+  overflow: hidden; /* Contains the button border/outline */
+}
+
+.dropdown-menu button {
+  width: 100%;
+  padding: 10px 15px; /* More horizontal padding */
+  border: none;
+  background: none;
+  color: var(--navbar-color); /* Ensure text color is inherited */
+  text-align: left;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.dropdown-menu button:hover {
+  background: var(--hover-bg);
+}
+
+/* ============================== */
+/* === RESPONSIVE MEDIA QUERIES === */
+/* ============================== */
+
+/* Tablet and Mobile adjustments (up to 768px) */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 15px; /* Reduce horizontal padding on smaller screens */
+  }
+
+  /* Show the hamburger icon */
+  .hamburger {
+    display: block; 
+  }
+
+  /* Hide the full 'Admin Panel' title on smaller screens */
+  .navbar-left h2 {
+    font-size: 1.1rem;
+  }
+}
+
+/* Extra Small Screens (Mobile landscape/small portrait, up to 480px) */
+@media (max-width: 480px) {
+  /* Hide username on very small screens, keeping only the avatar */
+  .user-name {
+    display: none; 
+  }
+
+  /* Make the title smaller if needed, or truncate it */
+  .navbar-left h2 {
+    font-size: 1rem;
+    max-width: 120px; /* Limit width to prevent overflow */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis for clipped text */
+  }
+
+  .user-info {
+    gap: 5px; /* Reduce gap */
+    padding: 2px; /* Reduce padding */
+  }
+
+  .dropdown-menu {
+    /* If hiding the name, the right position might need adjustment
+       to align with the avatar instead of the text */
+    right: 0; 
+  }
+}

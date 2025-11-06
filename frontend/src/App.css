@@ -1,0 +1,148 @@
+/* =========================================
+   0. Global Reset and Base Styles
+   ========================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa; /* Light, clean background */
+    color: #333;
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevents horizontal scroll on layout shifts */
+}
+
+/* =========================================
+   1. App Layout
+   ========================================= */
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+    background: #f8f9fa;
+    width: 100vw;
+}
+
+/* =========================================
+   2. Navbar (Top Bar)
+   ========================================= */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: #212529; /* Primary blue color */
+    color: white;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Styles for Navbar components (not provided, but helpful) */
+.navbar button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 5px;
+    transition: opacity 0.2s;
+}
+
+.navbar button:hover {
+    opacity: 0.8;
+}
+
+/* =========================================
+   3. Sidebar
+   ========================================= */
+.sidebar {
+    /* Base Desktop/Wide View */
+    width: 240px;
+    background: #212529; /* Darker charcoal/black for contrast */
+    color: #adb5bd; /* Light gray text */
+    transition: transform 0.3s ease, width 0.3s ease;
+    position: fixed;
+    top: 60px; /* Below navbar */
+    left: 0;
+    bottom: 0;
+    z-index: 900; /* Below navbar */
+    overflow-y: auto;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================================
+   4. Main Content Area
+   ========================================= */
+.main-content {
+    flex: 1;
+    min-height: calc(100vh - 60px); /* Fill remaining vertical space */
+    margin-left: 240px; /* Offset for desktop sidebar */
+    margin-top: 60px; /* Offset for navbar */
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+    background-color: #f8f9fa; /* Matches body */
+}
+
+/* Main Content when sidebar is explicitly closed (Desktop view) */
+/* The "full-width" class here usually applies when the sidebar is intentionally toggled closed on large screens, or when the user is logged out */
+.main-content.full-width {
+    margin-left: 0;
+}
+
+/* Main Page Wrapper - gives content structure */
+.main-page {
+    padding: 0; /* Content padding is handled by .main-content */
+    min-height: 100%;
+}
+
+
+/* =========================================
+   5. Responsiveness (Mobile View)
+   ========================================= */
+@media (max-width: 768px) {
+    /* --- Sidebar (Mobile) --- */
+    .sidebar {
+        /* Mobile: Sidebar starts off-screen (closed by default) */
+        width: 240px; 
+        transform: translateX(-240px); /* Hide it off-screen */
+        top: 0; /* Cover the whole height */
+        height: 100vh;
+        padding-top: 60px; /* Space for Navbar */
+    }
+
+    /* Mobile: Sidebar when open */
+    .sidebar[data-is-open="true"] {
+        transform: translateX(0); /* Slide into view */
+    }
+    
+    /* FIX: When you use a boolean prop like 'isOpen', you must pass it to the Sidebar component as a data-attribute for CSS to read it correctly, or change your React logic. Assuming you stick to the prop:
+       
+       In your Sidebar component JSX, use:
+       <div className="sidebar" data-is-open={isOpen ? "true" : "false"}>...</div>
+
+       Then use the CSS selector above: .sidebar[data-is-open="true"]
+       
+       For this specific App.js, we must rely on React classes if the prop can't be added to the Sidebar directly. */
+
+
+    /* --- Main Content (Mobile) --- */
+    .main-content {
+        /* Mobile: Main content always starts at 0 margin (full width) */
+        margin-left: 0 !important; /* Override the desktop margin-left */
+        margin-top: 60px; /* Keep space for Navbar */
+        padding: 10px; /* Reduce padding on mobile */
+    }
+
+    /* Main content should NOT have a margin-left on mobile, regardless of sidebar state. */
+    /* The sidebar will overlay the content, so we just set main-content to full width. */
+    .main-content.full-width {
+        margin-left: 0;
+    }
+}

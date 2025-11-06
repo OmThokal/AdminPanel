@@ -1,0 +1,110 @@
+
+:root {
+  --sidebar-width: 250px;
+  --navbar-height: 60px; /* Must match the Navbar's height */
+  --sidebar-bg: #1a1a1a;
+  --sidebar-color: #fff;
+  --link-hover-bg: #333;
+  --link-active-bg: #444;
+}
+
+.sidebar {
+  /* Core layout properties */
+  width: var(--sidebar-width);
+  background: var(--sidebar-bg);
+  color: var(--sidebar-color);
+  
+  /* Height below the Navbar */
+  height: calc(100vh - var(--navbar-height)); 
+  position: fixed;
+  top: var(--navbar-height); /* Start below the navbar */
+  left: 0;
+  
+  /* Smooth transition for opening/closing */
+  transition: transform 0.3s ease, width 0.3s ease; 
+  z-index: 990; /* Below the Navbar (1000) but above content */
+  overflow-y: auto; /* Allows scrolling if content is long */
+  box-sizing: border-box;
+}
+
+/* --- Profile Section --- */
+.profile {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 1rem; /* Increased vertical padding */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 1rem;
+}
+.avatar {
+  width: 45px; /* Slightly larger avatar */
+  height: 45px;
+  border-radius: 50%;
+  margin-right: 1rem; /* Increased spacing */
+  object-fit: cover;
+}
+.name {
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0 0 0.2rem 0;
+}
+.status {
+  font-size: 0.8rem;
+  color: #a0a0a0;
+}
+
+/* --- Navigation --- */
+.nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.nav li a {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 1rem; /* Slightly larger padding for better click area */
+  color: var(--sidebar-color);
+  text-decoration: none;
+  font-size: 1rem; /* Use rem for scalability */
+  transition: background-color 0.2s;
+}
+
+.nav li a:hover {
+  background: var(--link-hover-bg);
+}
+
+.nav li a.active {
+  background: var(--link-active-bg);
+  border-left: 4px solid #3e98e2; /* Visual indicator for active link */
+  padding-left: calc(1rem - 4px); /* Adjust padding to account for border */
+}
+
+/* ============================== */
+/* === RESPONSIVE MEDIA QUERIES === */
+/* ============================== */
+
+/* Desktop (769px and up) - Always visible, no transform needed */
+@media (min-width: 769px) {
+  .sidebar {
+    transform: translateX(0) !important;
+  }
+}
+
+/* Mobile/Tablet (up to 768px) - Off-canvas by default */
+@media (max-width: 768px) {
+  .sidebar {
+    /* Hide the sidebar off-screen */
+    transform: translateX(-100%); 
+    /* The sidebar should cover the whole screen height on mobile */
+    height: 100vh;
+    top: 0;
+    /* Increase z-index so it clearly overlays the navbar too, 
+       giving a full-screen menu feel */
+    z-index: 1010; 
+  }
+  
+  .sidebar.open {
+    /* Slide into view when 'open' class is applied */
+    transform: translateX(0);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5); /* Nice overlay shadow */
+  }
+}

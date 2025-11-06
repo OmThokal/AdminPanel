@@ -1,0 +1,782 @@
+/* =========================================
+   0. Base Styles and Reset
+   ========================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* --- General Containers (Matching Products/Brands) --- */
+.list-orders-container, .create-order-container, .invoice-detail-container {
+    background-color: #f2f7fb;
+    border: 1px dashed #b3cde3;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* =========================================
+   1. Shared Header Styles (Optimized for Actions)
+   ========================================= */
+.list-orders-header, .create-order-header, .invoice-detail-header {
+    background-color: #2e6fa8;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-bottom: 20px;
+    /* Ensure the header can wrap on small screens */
+    flex-wrap: wrap; 
+}
+
+.list-orders-header h3, .create-order-header h3, .invoice-detail-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: normal;
+    /* Allow text to grow, but maintain min-size */
+    flex-shrink: 0; 
+}
+
+.header-breadcrumbs {
+    font-size: 12px;
+    /* Adjusted position for better layout flow with actions */
+    position: static; 
+    margin-left: 20px;
+    flex-grow: 1; /* Pushes other elements away */
+    text-align: right;
+}
+.header-breadcrumbs span:first-child {
+    color: #b2cbe0;
+}
+
+/* --- Action Button Container FIX --- */
+.invoice-header-actions {
+    display: flex;
+    gap: 10px;
+    /* Remove absolute positioning on desktop */
+    position: static; 
+    transform: none;
+    /* Use margin-left: auto to push actions to the right */
+    margin-left: 20px; 
+    align-items: center;
+    flex-shrink: 0;
+}
+/* Ensure icon and text spacing in buttons */
+.back-btn, .btn-export-pdf, .add-order-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Spacing between icon and text */
+    white-space: nowrap; /* Prevent button text/icon from wrapping */
+    
+    /* Shared styles */
+    border: none;
+    padding: 5px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.back-btn {
+    background-color: #ff9900;
+}
+.back-btn:hover {
+    background-color: #e68a00;
+}
+
+.btn-export-pdf {
+    background-color: #38c172; /* Green export button */
+    width: 100px;
+}
+.btn-export-pdf:hover {
+    background-color: #31a462;
+}
+
+.add-order-btn {
+    background-color: #ff9900;
+}
+.add-order-btn:hover {
+    background-color: #e68a00;
+}
+
+
+/* Listing Orders Title Bar */
+.listing-orders-title {
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+    border-top: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    color: #333;
+    font-size: 14px;
+}
+
+/* =========================================
+   2. List View Styles
+   ========================================= */
+
+/* --- Table Control Styles (List View) --- */
+.table-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+    background-color: white;
+}
+
+.show-entries {
+    font-size: 14px;
+    color: #666;
+    display: flex;
+    align-items: center;
+}
+.show-entries select {
+    margin: 0 5px;
+    padding: 2px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    font-size: 14px;
+}
+
+.search-and-add {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-box label {
+    font-size: 14px;
+    color: #666;
+    margin-right: 5px;
+}
+
+.search-box input {
+    padding: 3px 5px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+
+/* --- Order Table Styles --- */
+.table-wrapper {
+    background-color: white;
+    border: 1px solid #ddd;
+    margin-top: -1px;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.orders-table th, .orders-table td {
+    padding: 10px 15px;
+    text-align: left;
+    border: 1px solid #eee;
+    vertical-align: middle;
+}
+
+.orders-table th {
+    background-color: #f8f8f8;
+    font-weight: normal;
+    color: #333;
+    border-bottom: 2px solid #ddd;
+}
+
+.customer-info-cell p {
+    margin: 2px 0;
+    font-size: 13px;
+}
+
+/* Status Badge */
+.status-badge {
+    padding: 3px 8px;
+    border-radius: 12px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+.status-badge.cash { background-color: #38c172; }
+.status-badge.pending { background-color: #f6993f; }
+.status-badge.card { background-color: #3490dc; }
+
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.action-buttons button {
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+}
+.btn-invoice {
+    background-color: #3490dc; /* Blue for Invoice Detail */
+    width: 100px;
+}
+.btn-delete {
+    background-color: #dc3545;
+    width: 100px;
+}
+
+/* --- Table Footer & Pagination (Shared) --- */
+.table-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #666;
+    background-color: white;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.pagination button {
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 14px;
+}
+.pagination button:disabled {
+    cursor: not-allowed;
+    background-color: #eee;
+    color: #ccc;
+}
+.page-number {
+    font-weight: bold;
+}
+
+/* ===========================
+   General Container
+=========================== */
+.create-order-container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* ===========================
+   Header
+=========================== */
+.create-order-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.create-order-header h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #222;
+  margin: 0;
+}
+
+.header-breadcrumbs {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.back-btn {
+  background: #ff9900;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.back-btn:hover {
+  background: #000000;
+}
+
+/* ===========================
+   Form Layout
+=========================== */
+.order-form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Sections */
+.form-section {
+  background: #fafafa;
+  padding: 15px 20px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+}
+.form-section h4 {
+  margin-bottom: 15px;
+  color: #333;
+  font-size: 1.1rem;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+
+/* ===========================
+   Form Groups
+=========================== */
+.form-group,
+.form-group-double,
+.form-group-triple {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+.form-group label,
+.form-group-double label,
+.form-group-triple label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #444;
+}
+
+input,
+textarea,
+select {
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: 0.2s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #3e98e2;
+  box-shadow: 0 0 4px rgba(62, 152, 226, 0.3);
+}
+
+textarea {
+  resize: none;
+  min-height: 60px;
+}
+
+/* ===========================
+   Product Items
+=========================== */
+.product-item-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) auto;
+  gap: 12px;
+  margin-bottom: 15px;
+  align-items: end;
+}
+
+.read-only-group input {
+  background: #f4f4f4;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.item-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.btn-add-more,
+.btn-remove {
+  padding: 7px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-add-more {
+  background: #3e98e2;
+  color: white;
+  margin-bottom: 15%;
+
+}
+.btn-add-more:hover {
+  background: #327ec2;
+}
+
+.btn-remove {
+  background: #e74c3c;
+  color: white;
+}
+.btn-remove:hover {
+  background: #c0392b;
+}
+
+/* ===========================
+   Order Summary
+=========================== */
+.order-summary-desktop,
+.order-summary-mobile {
+  margin-top: 15px;
+  font-size: 0.95rem;
+}
+
+.order-summary-desktop p,
+.order-summary-mobile p {
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 0;
+}
+
+.order-summary-desktop span,
+.order-summary-mobile span {
+  font-weight: 600;
+}
+
+.total-line {
+  font-size: 1.05rem;
+  font-weight: bold;
+  color: #222;
+}
+
+/* Desktop version */
+.order-summary-desktop {
+  display: block;
+}
+
+/* Mobile version */
+.order-summary-mobile {
+  display: none;
+}
+
+/* ===========================
+   Submit Button
+=========================== */
+.submit-btn {
+  width: 20%;
+  padding: 12px;
+  font-size: 1rem;
+  background: #3e98e2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.submit-btn:hover {
+  background: #327ec2;
+}
+.submit-btn:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+@media (max-width: 768px) {
+  .create-order-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .order-summary-desktop {
+    display: none;
+  }
+  .order-summary-mobile {
+    display: block;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 6px;
+  }
+}
+
+/* =========================================
+   4. Invoice Detail Styles
+   ========================================= */
+
+.invoice-card {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.invoice-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.invoice-metadata-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.billed-to, .shipped-to, .payment-info, .order-dates {
+    border-right: 1px solid #eee;
+    padding-right: 15px;
+}
+.order-dates {
+    border-right: none;
+}
+
+.invoice-metadata-grid h4 {
+    color: #2e6fa8;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+.invoice-metadata-grid p {
+    margin: 3px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.status-text.pending { color: #f6993f; font-weight: bold; }
+.status-text.cash { color: #38c172; font-weight: bold; }
+
+.order-summary-box {
+    margin-top: 20px;
+}
+.order-summary-box h4 {
+    margin-top: 0;
+    color: #333;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.summary-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.summary-table th, .summary-table td {
+    border: 1px solid #eee;
+    padding: 10px;
+    text-align: right;
+    font-size: 14px;
+}
+
+.summary-table th {
+    background-color: #f7f7f7;
+    font-weight: bold;
+    text-align: left;
+}
+.summary-table th:last-child {
+    text-align: right;
+}
+.summary-table td:first-child {
+    text-align: left;
+}
+
+.summary-table tfoot td {
+    border-top: 2px solid #ddd;
+    font-weight: 500;
+}
+.summary-table tfoot .final-total {
+    font-weight: bold;
+    color: #2e6fa8;
+    font-size: 16px;
+}
+.summary-table tfoot .text-right {
+    text-align: right;
+}
+
+
+/* =========================================
+   5. Responsive Design
+   ========================================= */
+@media (min-width: 768px) {
+    /* Create Order */
+    .form-group-double {
+        grid-template-columns: 1fr 1fr;
+    }
+    .form-group-triple {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    /* List View */
+    .table-controls {
+        flex-direction: row;
+        align-items: center;
+    }
+    .search-and-add {
+        width: auto;
+    }
+    .action-buttons {
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 1024px) {
+    /* Create Order */
+    .product-info {
+        grid-column: 1 / -1; /* Product info spans full width */
+    }
+    .product-item-row {
+        /* Standard desktop grid for 6 items + button */
+        grid-template-columns: 1.5fr 1fr 1fr 0.8fr 1fr 1fr 50px; 
+    }
+    .product-item-row:first-child label {
+        display: none; /* Hide explicit labels */
+    }
+    
+    /* Invoice Detail */
+    .invoice-metadata-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    /* Header Flow (General) */
+    .list-orders-header, .create-order-header, .invoice-detail-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+    .header-breadcrumbs {
+        /* Reset absolute/flex-grow for clean column layout */
+        position: static;
+        margin-left: 0;
+        text-align: left;
+        order: 3; /* Move breadcrumbs below title */
+        width: 100%;
+        margin-top: 5px;
+    }
+    .invoice-detail-header h3 {
+        order: 1;
+    }
+
+    /* FIX: Button Overlap */
+    .invoice-header-actions {
+        order: 2; /* Place actions below title */
+        position: static;
+        transform: none;
+        margin-top: 10px;
+        margin-left: 0;
+        width: 100%;
+        justify-content: space-between;
+        gap: 10px;
+    }
+    .back-btn, .btn-export-pdf {
+        flex: 1; /* Makes buttons take equal width */
+        justify-content: center;
+        padding: 8px 10px;
+    }
+    
+    /* List Orders */
+    .table-controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .search-and-add {
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+    .search-box {
+        flex-grow: 1;
+    }
+    .orders-table th {
+        display: none; /* Hide headers on mobile */
+    }
+    .orders-table td {
+        display: block;
+        padding-left: 50%; 
+        text-align: right;
+        position: relative;
+    }
+    .orders-table td:before { 
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 45%; 
+        padding-right: 10px; 
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        color: #333;
+    }
+    
+    /* Labeling rows for mobile view */
+    .orders-table td:nth-of-type(1):before { content: "Sr No"; }
+    .orders-table td:nth-of-type(2):before { content: "Customer Info"; }
+    .orders-table td:nth-of-type(3):before { content: "Products"; }
+    .orders-table td:nth-of-type(4):before { content: "Total Amount"; }
+    .orders-table td:nth-of-type(5):before { content: "Discount"; }
+    .orders-table td:nth-of-type(6):before { content: "Created at"; }
+    .orders-table td:nth-of-type(7):before { content: "Payment Status"; }
+    .orders-table td:nth-of-type(8):before { content: "Action"; }
+
+    /* Create Order */
+    .product-item-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+    .product-item-row .form-group {
+        grid-column: span 1;
+    }
+    .product-item-row label {
+        display: block !important;
+    }
+    .item-action-btn {
+        grid-column: 1 / -1;
+        margin-top: 0; /* Adjust button alignment */
+    }
+    .order-summary-desktop {
+        display: none;
+    }
+    .order-summary-mobile {
+        display: block;
+        padding: 10px;
+        background-color: #f7f7f7;
+        border: 1px dashed #ccc;
+        margin-top: 15px;
+        text-align: right;
+    }
+
+    /* Invoice Detail */
+    .invoice-metadata-grid {
+        grid-template-columns: 1fr; /* Stack into a single column */
+    }
+    .billed-to, .shipped-to, .payment-info {
+        border-right: none;
+        border-bottom: 1px dotted #eee;
+        padding-bottom: 15px;
+        padding-right: 0;
+    }
+    .summary-table {
+        /* Mobile table adjustments for smaller screens */
+        font-size: 12px;
+    }
+}
