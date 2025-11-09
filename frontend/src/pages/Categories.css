@@ -1,9 +1,6 @@
-/* =========================================
-   1. General Layout and Header
-   ========================================= */
 .list-categories-container {
     background-color: #f2f7fb;
-    padding: 10px; 
+    padding: 10px;
     font-family: Arial, sans-serif;
     min-height: 100vh;
 }
@@ -32,9 +29,6 @@
     color: #b2cbe0;
 }
 
-/* =========================================
-   2. Table Controls (Show/Search/Add)
-   ========================================= */
 .table-controls {
     display: flex;
     justify-content: space-between;
@@ -98,19 +92,16 @@
     background-color: #e68a00;
 }
 
-/* =========================================
-   3. Main Table Structure
-   ========================================= */
 .table-wrapper {
     background-color: white;
     border: 1px solid #ddd;
-    overflow-x: auto; /* Enables horizontal scroll for mobile tables */
+    overflow-x: auto;
     margin-top: 10px;
 }
 
 .categories-table {
     width: 100%;
-    min-width: 600px; 
+    min-width: 600px;
     border-collapse: collapse;
     font-size: 14px;
 }
@@ -153,7 +144,7 @@
 
 .action-buttons {
     display: flex;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
     gap: 5px;
     align-items: center;
 }
@@ -162,7 +153,7 @@
     border: none;
     width: auto;
     height: auto;
-    padding: 5px 10px; 
+    padding: 5px 10px;
     border-radius: 3px;
     cursor: pointer;
     color: white;
@@ -177,9 +168,6 @@
     background-color: #dc3545;
 }
 
-/* =========================================
-   4. Table Footer and Pagination
-   ========================================= */
 .table-footer {
     display: flex;
     justify-content: space-between;
@@ -216,9 +204,6 @@
     font-weight: bold;
 }
 
-/* =========================================
-   5. Modal Structure and Form
-   ========================================= */
 .modal-backdrop {
     position: fixed;
     top: 0;
@@ -243,8 +228,7 @@
     position: relative;
     max-height: 90vh;
     overflow-y: auto;
-    /* FIX: Remove default focus outline from the modal container */
-    outline: none; 
+    outline: none;
 }
 
 .modal-header {
@@ -279,14 +263,12 @@
     color: #333;
 }
 
-/* FIX: Control focus ring on close button */
 .close-modal-btn:focus {
     outline: none;
     box-shadow: 0 0 0 2px rgba(153, 153, 153, 0.5);
     border-radius: 3px;
 }
 
-/* Form-related CSS */
 .form-group {
     margin-bottom: 15px;
 }
@@ -309,9 +291,8 @@
     transition: border-color 0.3s ease;
 }
 
-/* FIX: Customize input/select focus ring to match theme (removes default blue) */
 .form-group input:focus, .form-group select:focus {
-    border-color: #2e6fa8; 
+    border-color: #2e6fa8;
     box-shadow: 0 0 0 3px rgba(46, 111, 168, 0.3);
     outline: none;
 }
@@ -334,17 +315,13 @@
     background-color: #27608f;
 }
 
-/* FIX: Customize submit button focus/active state (removes default blue) */
 .submit-btn:focus,
 .submit-btn:active {
-    background-color: #27608f; /* Darker blue on click/focus */
+    background-color: #27608f;
     outline: none;
     box-shadow: 0 0 0 3px rgba(46, 111, 168, 0.4);
 }
 
-/* =========================================
-   6. Media Queries for Responsiveness
-   ========================================= */
 @media (max-width: 768px) {
     .table-controls {
         flex-direction: column;
@@ -386,7 +363,6 @@
     }
 }
 
-/* Animation */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-20px) scale(0.95); }
     to { opacity: 1; transform: translateY(0) scale(1); }

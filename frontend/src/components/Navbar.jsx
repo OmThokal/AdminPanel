@@ -7,19 +7,14 @@ export default function Navbar({ userName, onLogout, toggleSidebar }) {
 
   return (
     <header className="navbar">
-      <button className="hamburger" onClick={toggleSidebar}>
-        ☰
-      </button>
+      <button className="hamburger" onClick={toggleSidebar}>☰</button>
 
       <div className="navbar-left">
         <h2>Admin Panel</h2>
       </div>
 
       <div className="navbar-right">
-        <div
-          className="user-info"
-          onClick={() => setDropdownOpen(!dropdownOpen)}
-        >
+        <div className="user-info" onClick={() => setDropdownOpen(!dropdownOpen)}>
           <span className="user-name">{userName}</span>
           <img src={User} alt="User" className="user-avatar" />
         </div>

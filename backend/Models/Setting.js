@@ -1,4 +1,4 @@
-// Models/Setting.js
+
 import mongoose from "mongoose";
 
 const settingSchema = new mongoose.Schema({

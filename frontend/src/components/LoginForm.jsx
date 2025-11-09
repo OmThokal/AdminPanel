@@ -13,49 +13,51 @@ const LoginForm = ({ onLogin }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="form-container">
-      <h2>Login</h2>
-      <Formik
-        initialValues={{ email: "", password: "" }}
-        validationSchema={LoginSchema}
-        onSubmit={async (values, { resetForm }) => {
-          try {
-            const res = await axios.post("http://localhost:8080/api/login", values);
-            alert("✅ Login successful!");
-            localStorage.setItem("token", res.data.token);
-            resetForm();
-            if (onLogin) onLogin();
-            navigate("/dashboard");
-          } catch (err) {
-            alert("❌ Error: " + (err.response?.data?.error || err.message));
-          }
-        }}
-      >
-        {({ isSubmitting }) => (
-          <Form>
-            <div className="form-field">
-              <Field type="email" name="email" placeholder="Enter email" />
-              <ErrorMessage name="email" component="div" className="error" />
-            </div>
+    <div className="form-page">
+      <div className="form-container">
+        <h2>Login</h2>
+        <Formik
+          initialValues={{ email: "", password: "" }}
+          validationSchema={LoginSchema}
+          onSubmit={async (values, { resetForm }) => {
+            try {
+              const res = await axios.post("http://localhost:8080/api/login", values);
+              alert("✅ Login successful!");
+              localStorage.setItem("token", res.data.token);
+              resetForm();
+              if (onLogin) onLogin();
+              navigate("/dashboard");
+            } catch (err) {
+              alert("❌ Error: " + (err.response?.data?.error || err.message));
+            }
+          }}
+        >
+          {({ isSubmitting }) => (
+            <Form>
+              <div className="form-field">
+                <Field type="email" name="email" placeholder="Enter email" />
+                <ErrorMessage name="email" component="div" className="error" />
+              </div>
 
-            <div className="form-field">
-              <Field type="password" name="password" placeholder="Enter password" />
-              <ErrorMessage name="password" component="div" className="error" />
-            </div>
+              <div className="form-field">
+                <Field type="password" name="password" placeholder="Enter password" />
+                <ErrorMessage name="password" component="div" className="error" />
+              </div>
 
-            <button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Logging in..." : "Login"}
-            </button>
+              <button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Logging in..." : "Login"}
+              </button>
 
-            <div className="login-redirect">
-              <p>Don’t have an account?</p>
-              <NavLink to="/register" className="login-btn">
-                Register
-              </NavLink>
-            </div>
-          </Form>
-        )}
-      </Formik>
+              <div className="login-redirect">
+                <p>Don’t have an account?</p>
+                <NavLink to="/register" className="login-btn">
+                  Register
+                </NavLink>
+              </div>
+            </Form>
+          )}
+        </Formik>
+      </div>
     </div>
   );
 };

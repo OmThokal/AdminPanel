@@ -1,21 +1,18 @@
-/* --- Dashboard Grid Layout --- */
 .dashboard-cards {
     display: grid;
-    /* Responsive grid layout */
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     padding: 10px;
 }
 
-/* --- Individual Card Styling (Matching Image) --- */
 .dashboard-card {
-    background-color: #ffffff; /* Default background */
+    background-color: #ffffff;
     color: #333;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
-    height: 150px; /* Fixed height for uniformity */
+    height: 150px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -31,7 +28,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: white; /* Text color for the content area */
+    color: white;
 }
 
 .icon-and-title {
@@ -49,7 +46,7 @@
 
 .card-icon {
     font-size: 2.5rem;
-    opacity: 0.2; /* Subtle icon effect */
+    opacity: 0.2;
 }
 
 .card-number-wrapper {
@@ -63,9 +60,8 @@
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* --- Card Footer/Link Area --- */
 .card-footer {
-    background-color: rgba(0, 0, 0, 0.1); /* Slightly darker stripe at the bottom */
+    background-color: rgba(0, 0, 0, 0.1);
     padding: 8px 20px;
     text-align: right;
 }
@@ -82,12 +78,10 @@
     text-decoration: underline;
 }
 
-/* --- Font Awesome Icon Styling (for more info arrow) --- */
 .card-footer i {
     margin-left: 5px;
 }
 
-/* --- Mobile Responsiveness --- */
 @media (max-width: 640px) {
     .dashboard-cards {
         grid-template-columns: 1fr;

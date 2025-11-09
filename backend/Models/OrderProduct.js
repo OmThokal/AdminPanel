@@ -18,8 +18,8 @@ const orderProductSchema = new mongoose.Schema(
       min: 1,
     },
     price: {
-      type: Number,         // ✅ PRICE FIELD MUST BE NUMBER
-      required: true,       // ✅ REQUIRED SO NO ERROR
+      type: Number,         
+      required: true,       
     },
   },
   { timestamps: true }

@@ -1,8 +1,6 @@
 // Report.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-// import "./Report.css"; // create this css file
-
 const API_BASE_URL = "http://localhost:8080/api";
 
 const Report = ({ onBack }) => {
